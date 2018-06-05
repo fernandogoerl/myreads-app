@@ -1,10 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { update } from '../api/BooksAPI';
 
-class ShelfChanger extends Component {
+export default class ShelfChanger extends Component {
     render() {
+        const { book, changeShelf } = this.props;
         return (
             <div className="book-shelf-changer">
-                <select>
+                <select onChange={
+                    (event) => {
+                        console.log(book, event.target.value);
+                        changeShelf(book, event.target.value);
+                    }
+                }>
                     <option value="none" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -12,8 +19,6 @@ class ShelfChanger extends Component {
                     <option value="none">None</option>
                 </select>
             </div>
-        )
+        );
     }
 }
-
-export default ShelfChanger
