@@ -15,7 +15,7 @@ It wiil install all dependencies and start the project at localhost:3000
 
 ### Built With
 
-React, react-strap, bootstrap, etc
+React
 
 ### Deploying
 
