@@ -9,42 +9,36 @@ const api = BooksAPI;
 
 export default class BooksApp extends React.Component {
     state = {
-        books: []
+        myBooks: []
     };
 
     componentDidMount () {
-        api.getAll().then((books) => {
-            this.setState({ books });
+        api.getAll().then((myBooks) => {
+            this.setState({ myBooks });
         })
     };
-    // componentDidMount = () => {
-    //     api.getAll().then((books) => {
-    //         this.setState((prevState) => ({
-    //             myBooks: books,
-    //             count: prevState.count + 1
-	// 		   }))
-    //     })
-    // };
 
-    changeShelf = (book, shelf) => {
-        api
-            .update(book, shelf)
-            .then((updatedBooks) => {
-                console.log(updatedBooks);
-
-            })
-    }
+    changeShelf = (bookToChange, newShelf) => {
+        api.update(bookToChange, newShelf).then((s) => {
+            bookToChange.shelf = newShelf;
+            this.setState({
+                myBooks: this.state.myBooks
+                            .filter((book) => bookToChange.id !== book.id)
+                            .concat(bookToChange)
+            });
+        });
+    };
 
     render() {
         return (
         <div className="app">
             <Route exact path='/' render={() => (
-                <ShelvesPage books={this.state.books} changeShelf={this.changeShelf}/>
+                <ShelvesPage books={this.state.myBooks} changeShelf={this.changeShelf}/>
             )}/>
             <Route path='/search' render={() => (
                 <SearchPage/>
             )}/>
         </div>
         );
-    }
-}
+    };
+};
