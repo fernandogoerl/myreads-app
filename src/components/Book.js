@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import ShelfChanger from './ShelfChanger';
+import PropTypes from 'prop-types';
 
 export default class Book extends Component {
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        changeShelf: PropTypes.func.isRequired
+    }
 
     render() {
         const { book, changeShelf } = this.props;
@@ -16,11 +21,11 @@ export default class Book extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                         }}
                     />
-                    <ShelfChanger book={book} changeShelf={changeShelf}/>
                 </div>
                 <div className="book-title">{ (book.title) ? book.title : '' }</div>
                 <div className="book-authors">{book.authors.length > 1 ? book.authors.join(', ') : book.authors}</div>
+                    <ShelfChanger book={book} changeShelf={changeShelf}/>
             </div>
         );
-    }
-}
+    };
+};
