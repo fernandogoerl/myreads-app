@@ -4,8 +4,14 @@ import Shelf from '../components/Shelf';
 import Book from '../components/Book';
 import ShelfChanger from '../components/ShelfChanger';
 import { Shelves } from '../utils/Shelves.js';
+import PropTypes from 'prop-types';
 
 export default class ShelvesPage extends Component {
+    static propTypes = {
+        books: PropTypes.array.isRequired,
+        changeShelf: PropTypes.func.isRequired
+    }
+
     render() {
         const { books, changeShelf } = this.props;
         console.log(books)
@@ -26,5 +32,5 @@ export default class ShelvesPage extends Component {
                 </div>
             </div>
         );
-    }
-}
+    };
+};
