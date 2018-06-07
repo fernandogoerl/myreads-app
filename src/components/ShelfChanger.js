@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { update } from '../api/BooksAPI';
+import PropTypes from 'prop-types';
 
 export default class ShelfChanger extends Component {
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        changeShelf: PropTypes.func.isRequired
+    }
+
     render() {
         const { book, changeShelf } = this.props;
         return (
@@ -12,7 +17,7 @@ export default class ShelfChanger extends Component {
                         changeShelf(book, event.target.value);
                     }
                 }>
-                    <option value="none" disabled>Move to...</option>
+                    <option>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
@@ -20,5 +25,5 @@ export default class ShelfChanger extends Component {
                 </select>
             </div>
         );
-    }
-}
+    };
+};
