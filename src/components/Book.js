@@ -11,20 +11,33 @@ export default class Book extends Component {
     render() {
         const { book, changeShelf } = this.props;
         return (
-            <div className="book">
-                <div className="book-top">
-                    <div
-                        className="book-cover"
-                        style={{
-                            width: 128,
-                            height: 193,
-                            backgroundImage: `url(${book.imageLinks.thumbnail})`
-                        }}
-                    />
+            <div className='book-wrapper'>
+                <div className="book">
+                    <div className="book-title">{
+                        (book.title)
+                        ? (
+                            (book.title.length > 18)
+                            ? (
+                                `${book.title.substr(0,18)}...`
+                            )
+                            : book.title
+                        )
+                        : ''
+                    }</div>
+                    <div className="book-top">
+                        <img
+                            className="book-cover"
+                            src={book.imageLinks.thumbnail}
+                            alt={book.imageLinks.thumbnail}
+                        />
+                    </div>
+                    <div className="book-authors">{
+                        (book.authors.length > 1)
+                        ? `${book.authors[0]}, ${book.authors[1].substr(0,3)}...`
+                        : book.authors
+                    }</div>
                 </div>
-                <div className="book-title">{ (book.title) ? book.title : '' }</div>
-                <div className="book-authors">{book.authors.length > 1 ? book.authors.join(', ') : book.authors}</div>
-                    <ShelfChanger book={book} changeShelf={changeShelf}/>
+                <ShelfChanger book={book} changeShelf={changeShelf}/>
             </div>
         );
     };

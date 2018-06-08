@@ -7,13 +7,46 @@ export default class ShelfChanger extends Component {
         changeShelf: PropTypes.func.isRequired
     }
 
+
+    state = {
+        changerOpacity: 0
+    };
+
+    toogleChanger = () => {
+        this.setState({ changerOpacity: 1-this.state.changerOpacity })
+    };
+
+    isThisShelf = (value) => {
+        return (value === this.props.book.shelf) ? 'shelf-active' : ''
+    };
+
+    isActive = (shelf) => {
+        return (shelf === this.props.book.shelf) ? 'none' : shelf
+    };
+
+
+
     render() {
         const { book, changeShelf } = this.props;
         return (
-            <div className="book-shelf-changer">
-                <select onChange={
+            <div className='book-shelf-changer-wrap'>
+
+                <div className='button-changer-wrapper' style={{opacity: this.state.changerOpacity}}>
+                    <button
+                        className={'button-changer '+this.isThisShelf('currentlyReading')}
+                        onClick={() => {changeShelf(book, this.isActive('currentlyReading'))}}
+                    >Reading</button>
+                    <button
+                        className={'button-changer '+this.isThisShelf('wantToRead')}
+                        onClick={() => {changeShelf(book, this.isActive('wantToRead'))}}
+                    >To Read</button>
+                    <button
+                        className={'button-changer '+this.isThisShelf('read')}
+                        onClick={() => {changeShelf(book, this.isActive('read'))}}
+                    >Read</button>
+                </div>
+                {/* <select onChange={
                     (event) => {
-                        console.log(book, event.target.value);
                         changeShelf(book, event.target.value);
                     }
                 }>
@@ -22,7 +55,10 @@ export default class ShelfChanger extends Component {
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
                     <option value="none">None</option>
-                </select>
+                </select> */}
+                <div
+                    className='book-shelf-changer'
+                    onClick={this.toogleChanger}/>
             </div>
         );
     };
