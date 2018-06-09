@@ -20,10 +20,9 @@ export default class Shelf extends Component {
                         {books
                             .filter((book) => book.shelf === shelfData.name)
                             .map((book) => (
-                                <li key={book.id}>
-                                    <Book book={book} changeShelf={changeShelf}/>
-                                </li>
-                        ))}
+                                <Book book={book} changeShelf={changeShelf}/>
+                            ))
+                        }
                     </ol>
                 </div>
             </div>
