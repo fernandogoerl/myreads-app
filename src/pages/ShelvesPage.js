@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Shelf from '../components/Shelf';
-import Book from '../components/Book';
-import ShelfChanger from '../components/ShelfChanger';
 import { Shelves } from '../utils/Shelves.js';
 import PropTypes from 'prop-types';
 
