@@ -11,6 +11,7 @@
         "react-scripts": "1.1.4"
     },
     "scripts": {
+        "start": "react-scripts start",
         "build": "react-scripts build",
         "cleanup": "rm -rf node_modules/gh-pages/.cache",
         "deploy": "npm run build && gh-pages -d build"

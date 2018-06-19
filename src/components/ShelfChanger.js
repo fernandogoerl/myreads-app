@@ -15,7 +15,6 @@ export default class ShelfChanger extends Component {
     };
 
     toogleChanger = () => {
-        this.props.haveBlur();
         this.setState({
             changerOpacity: 1-this.state.changerOpacity,
             display: ((this.state.display === 'none') ? 'block' : this.state.display)
@@ -36,7 +35,6 @@ export default class ShelfChanger extends Component {
         const { book, changeShelf } = this.props;
         return (
             <div className='book-shelf-changer-wrap'>
-
                 <div className='button-changer-wrapper' style={{opacity: this.state.changerOpacity, display: this.state.display}}>
                     <button
                         className={'button-changer '+this.isThisShelf('currentlyReading')}
@@ -51,9 +49,7 @@ export default class ShelfChanger extends Component {
                         onClick={() => {changeShelf(book, this.isActive('read'))}}
                     >Read</button>
                 </div>
-                <div
-                    className='book-shelf-changer'
-                    onClick={this.toogleChanger}/>
+                <div className='book-shelf-changer' onClick={this.toogleChanger}/>
             </div>
         );
     };

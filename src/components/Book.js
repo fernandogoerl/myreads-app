@@ -11,16 +11,7 @@ export default class Book extends Component {
 
     }
 
-    state = {
-        blur: ''
-    };
-
-    haveBlur = () => {
-        this.setState({ blur: ((this.state.blur !== '') ? '' : `blur(3px)`)})
-    };
-
     render() {
-        const { blur } = this.state;
         const { keyIndex, book, changeShelf } = this.props;
 
         return (
@@ -33,7 +24,7 @@ export default class Book extends Component {
                     </div> )
                     : ''
                     }
-                    <div className="book" style={{ filter: blur }}>
+                    <div className="book">
                         <div className="book-title">{
                             (book.title)
                             ? (
