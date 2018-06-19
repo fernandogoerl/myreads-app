@@ -1,16 +1,18 @@
 {
-  "name": "my-reads-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
-  },
-  "scripts": {
-    "build": "react-scripts build",
-    "cleanup": "rm -rf node_modules/gh-pages/.cache",
-    "deploy": "npm run build && gh-pages -d build"
-  }
+    "homepage": "https://fernandogoerl.github.io/myreads-app/",
+    "name": "my-reads-app",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "gh-pages": "^1.2.0",
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0",
+        "react-router-dom": "^4.2.2",
+        "react-scripts": "1.1.4"
+    },
+    "scripts": {
+        "build": "react-scripts build",
+        "cleanup": "rm -rf node_modules/gh-pages/.cache",
+        "deploy": "npm run build && gh-pages -d build"
+    }
 }
