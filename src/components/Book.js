@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import ShelfChanger from './ShelfChanger';
 import PropTypes from 'prop-types';
+import check from '../icons/check.svg'
 
 export default class Book extends Component {
     static propTypes = {
         book: PropTypes.object.isRequired,
-        changeShelf: PropTypes.func.isRequired
+        changeShelf: PropTypes.func.isRequired,
+        keyIndex: PropTypes.string.isRequired
+
     }
 
     state = {
@@ -18,10 +21,18 @@ export default class Book extends Component {
 
     render() {
         const { blur } = this.state;
-        const { book, changeShelf } = this.props;
+        const { keyIndex, book, changeShelf } = this.props;
+
         return (
-            <li key={book.id}>
+            <li key={keyIndex}>
                 <div className='book-wrapper'>
+                    {( book.shelf !== 'none')
+                    ?
+                    ( <div className="triangle-check">
+                        <img className='book-check' src={check} alt='Checked Book'/>
+                    </div> )
+                    : ''
+                    }
                     <div className="book" style={{ filter: blur }}>
                         <div className="book-title">{
                             (book.title)
@@ -37,8 +48,16 @@ export default class Book extends Component {
                         <div className="book-top">
                             <img
                                 className="book-cover"
-                                src={book.imageLinks.thumbnail}
-                                alt={book.imageLinks.thumbnail}
+                                src={
+                                    (book.hasOwnProperty('imageLinks') && book.imageLinks.hasOwnProperty('thumbnail'))
+                                    ? (
+                                        (book.imageLinks.thumbnail)
+                                        ? book.imageLinks.thumbnail
+                                        : ''
+                                    )
+                                    : ''
+                                }
+                                alt={'Cover not available'}
                             />
                         </div>
                         <div className="book-authors">{
