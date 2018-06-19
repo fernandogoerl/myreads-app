@@ -1,4 +1,4 @@
-![Logo of the project](./src/icons/logo.png)
+![Logo of the project](./src/icons/myreads-logo.svg)
 
 # MyReads
 
