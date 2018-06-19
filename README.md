@@ -5,6 +5,8 @@
 This is a personal bookshelfs manager app created for Udacity's React Developer Nanodegree.
 It can manage books into three shelves: Reading, Want to Read and Read.
 
+Try it here: https://fernandogoerl.github.io/myreads-app/
+
 ## Getting started
 
 $ npm install
