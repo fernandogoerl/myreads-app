@@ -1,3 +1,5 @@
+![Logo of the project](./src/icons/logo.png)
+
 # MyReads
 
 This is a personal bookshelfs manager app created for Udacity's React Developer Nanodegree.
@@ -25,4 +27,4 @@ To run release version localy it is necessary to start a server. You can user se
 
 ## Licensing
 
-Academic purpose project
+Just an academic project!

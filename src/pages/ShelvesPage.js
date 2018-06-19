@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Shelf from '../components/Shelf';
 import { Shelves } from '../utils/Shelves.js';
 import PropTypes from 'prop-types';
+import logo from '../icons/myreads-logo.svg';
 
 export default class ShelvesPage extends Component {
     static propTypes = {
@@ -12,11 +13,10 @@ export default class ShelvesPage extends Component {
 
     render() {
         const { books, changeShelf } = this.props;
-        console.log(books)
         return (
             <div className="list-books">
                 <div className="list-books-title">
-                    <h1>MyReads</h1>
+                    <img className='myreads-logo' src={logo} alt='MyReads'/>
                 </div>
                 <div className="list-books-content">
                     <div>
@@ -25,7 +25,7 @@ export default class ShelvesPage extends Component {
                         <Shelf books={books} changeShelf={changeShelf} shelfData={Shelves.readShelf}/>
                     </div>
                 </div>
-                <div className="open-search">
+                <div className='open-search'>
                     <Link to='/search'>Add a book</Link>
                 </div>
             </div>
