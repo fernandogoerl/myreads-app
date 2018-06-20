@@ -13,25 +13,31 @@ export default class SearchPage extends Component {
     state ={
         query: '',
         tempBooks: [],
-        error: ''
+        error: false
     }
 
-    updadeQuery = (query) => {
-
-        this.searchBooks(this.state.query);
+    resetSearch = () => {
+        this.setState((prevState) => { prevState.tempBooks = [] });
     }
 
-    searchBooks = (newQuery) => {
-        this.setState({ query: newQuery.trim() });
-        api.search(this.state.query)
+    searchBooks = (query) => {
+        this.setState({ query });
+        (query && !this.state.error)
+        ? api.search(this.state.query)
             .then((results) => {
                 results.map((book) => book.shelf = 'none');
-                this.setState({tempBooks: results})
+                this.setState({
+                    tempBooks: results,
+                    error: false
+                });
             })
             .catch((error) => {
-                this.setState({error: 'Search terms not found!'})
-                // console.log('Erro na busca'+error)
-            });
+                this.setState((prevState) => {
+                    prevState.error = true;
+                });
+                this.resetSearch();
+            })
+        : this.resetSearch()
     };
 
     insideSearch(bookToFind, myBooks) {
@@ -51,7 +57,7 @@ export default class SearchPage extends Component {
 
     render() {
         const { books, changeShelf } = this.props;
-        const { query, tempBooks } = this.state;
+        const { query, tempBooks, error } = this.state;
 
         return (
             <div className="search-books">
@@ -67,15 +73,19 @@ export default class SearchPage extends Component {
 
                     </div>
                 </div>
-                <div className="search-books-results">{
-                    (tempBooks !== undefined)
-                    ? <ol className="books-grid">
-                        {tempBooks.map((book) => (
-                            <Book keyIndex={book.id} book={this.insideSearch(book, books)} changeShelf={changeShelf} />
-                        ))}
-                    </ol>
-                    : <div >{this.state.error}</div>
-                }</div>
+                <div className="search-books-results">
+                    { (tempBooks.length > 0) &&
+                        <ol className="books-grid">
+                            {tempBooks.map((book) => (
+                                <Book keyIndex={book.id} book={this.insideSearch(book, books)} changeShelf={changeShelf} />
+                            ))}
+                        </ol>
+                    }
+                    {error && query &&
+                        <div className="search-error">Search terms not found!
+                        </div>
+                    }
+                </div>
             </div>
         );
     };

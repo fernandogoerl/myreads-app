@@ -279,3 +279,8 @@ body,
 .book-shelf-changer-wrap select {
     display: none;
 }
+
+.search-error{
+    text-align: center;
+    font-size: 1.5rem;
+}
