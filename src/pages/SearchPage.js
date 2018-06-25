@@ -20,14 +20,18 @@ export default class SearchPage extends Component {
         this.setState((prevState) => { prevState.tempBooks = [] });
     }
 
-    searchBooks = (query) => {
+    searchBooks = (query, myBooks) => {
         this.setState({ query });
-        (query && !this.state.error)
+        (query && query !== '')
         ? api.search(this.state.query)
             .then((results) => {
-                results.map((book) => book.shelf = 'none');
+                let searchedBooks = results.map((book) => {
+                    book.shelf = 'none';
+                    book = this.insideSearch(book, myBooks);
+                    return book;
+                });
                 this.setState({
-                    tempBooks: results,
+                    tempBooks: searchedBooks,
                     error: false
                 });
             })
@@ -41,18 +45,11 @@ export default class SearchPage extends Component {
     };
 
     insideSearch(bookToFind, myBooks) {
-        let newBook;
-        myBooks.map((book) => {
-            if (bookToFind.id === book.id) {
-                bookToFind.shelf = book.shelf;
-                newBook = book;
-                return newBook;
-            } else {
-                newBook = bookToFind;
-                return bookToFind;
-            }
-        });
-        return newBook;
+        let newBook = myBooks.find((book) => (bookToFind.id === book.id));
+        if (newBook !== undefined){
+            return newBook;
+        }
+        return bookToFind
     };
 
     render() {
@@ -68,7 +65,7 @@ export default class SearchPage extends Component {
                             type="text"
                             placeholder="Search by title or author"
                             value={query}
-                            onChange={(event) => this.searchBooks(event.target.value)}
+                            onChange={(event) => this.searchBooks(event.target.value , books)}
                         />
 
                     </div>
@@ -77,7 +74,9 @@ export default class SearchPage extends Component {
                     { (tempBooks.length > 0) &&
                         <ol className="books-grid">
                             {tempBooks.map((book) => (
-                                <Book keyIndex={book.id} book={this.insideSearch(book, books)} changeShelf={changeShelf} />
+                                <li key={book.id}>
+                                    <Book book={book} changeShelf={changeShelf} />
+                                </li>
                             ))}
                         </ol>
                     }
