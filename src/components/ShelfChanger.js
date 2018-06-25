@@ -16,7 +16,7 @@ export default class ShelfChanger extends Component {
     toogleChanger = () => {
         this.setState({
             changerOpacity: 1-this.state.changerOpacity,
-            display: ((this.state.display === 'none') ? 'block' : this.state.display)
+            display: ((this.state.display === 'none') ? 'block' : 'none')
         });
     };
 
