@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import ShelfChanger from './ShelfChanger';
 import PropTypes from 'prop-types';
+import Popup from "reactjs-popup";
+import ShelfChanger from './ShelfChanger';
+import Details from './Details';
 import check from '../icons/check.svg'
+
+const contentStyle = {
+    maxWidth: "600px",
+    width: "90%",
+    border: 0,
+    padding: 0
+};
 
 export default class Book extends Component {
     static propTypes = {
@@ -10,10 +18,6 @@ export default class Book extends Component {
         changeShelf: PropTypes.func.isRequired
 
     }
-
-    openDetails = (book) => {
-
-    };
 
     render() {
         const { book, changeShelf } = this.props;
@@ -40,21 +44,28 @@ export default class Book extends Component {
                         : ''
                     }</div>
                     <div className="book-top">
-                        <Link to={{ pathname:'/details', state:{ detailsOfBook: book } }}>
-                            <img
-                                className="book-cover"
-                                src={
-                                    (book.hasOwnProperty('imageLinks') && book.imageLinks.hasOwnProperty('thumbnail'))
-                                    ? (
-                                        (book.imageLinks.thumbnail)
-                                        ? book.imageLinks.thumbnail
+                        <Popup
+                            trigger={
+                                <img
+                                    className="book-cover"
+                                    src={
+                                        (book.hasOwnProperty('imageLinks') && book.imageLinks.hasOwnProperty('thumbnail'))
+                                        ? (
+                                            (book.imageLinks.thumbnail)
+                                            ? book.imageLinks.thumbnail
+                                            : ''
+                                        )
                                         : ''
-                                    )
-                                    : ''
-                                }
-                                alt={'Cover not available'}
-                            />
-                        </Link>
+                                    }
+                                    alt={'Cover not available'}
+                                />
+                            }
+                            modal
+                            contentStyle={contentStyle}
+                        >
+                            {close => ( <Details book={book} changeShelf={changeShelf} close={close}/> )}
+                        </Popup>
+
                     </div>
                     <div className="book-authors">{
                         (book.authors)
@@ -66,7 +77,7 @@ export default class Book extends Component {
                         : ''
                     }</div>
                 </div>
-                <ShelfChanger book={book} changeShelf={changeShelf} haveBlur={this.haveBlur}/>
+                <ShelfChanger book={book} changeShelf={changeShelf}/>
             </div>
         );
     };

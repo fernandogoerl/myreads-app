@@ -1,0 +1,349 @@
+html,
+body,
+.root {
+    height: 100%;
+}
+
+body {
+    line-height: 1.5;
+}
+
+body,
+.app {
+    background: white;
+}
+
+/* main page */
+
+.myreads-logo{
+    max-height: 60px;
+}
+
+.list-books-title {
+    padding: 10px 0;
+    background: white;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.list-books-title h1 {
+    font-weight: 400;
+    margin: 0;
+    color: white;
+}
+
+.list-books-content {
+    padding: 0 0 80px;
+    flex: 1;
+}
+
+.bookshelf {
+    padding: 0 10px 20px;
+}
+
+@media (min-width: 600px) {
+    .bookshelf {
+        padding: 0 20px 40px;
+    }
+}
+
+.bookshelf-title {
+    border-bottom: 1px solid rgb(59, 72, 89);
+    font-weight:400;
+    text-transform: uppercase;
+    color: rgb(44, 163, 228);
+}
+
+.bookshelf-books {
+    text-align: center;
+}
+
+.open-search {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+}
+
+.open-search a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(44, 163, 228);
+    background-image: url('../icons/add.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    font-size: 0;
+}
+
+/* search page */
+
+.search-books-bar {
+    position: fixed;
+    width: 100%;
+    top: 87px;
+    left: 0;
+    z-index: 5;
+    display: flex;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
+}
+
+.search-books-input-wrapper {
+    flex: 1;
+    background: #e9e;
+}
+
+.search-books-bar input {
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 1.25em;
+    border: none;
+    outline: none;
+}
+
+.close-search {
+    display: block;
+    top: 20px;
+    left: 15px;
+    width: 50px;
+    height: 53px;
+    background: white;
+    background-image: url('../icons/arrow-back.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    font-size: 0;
+}
+
+.search-books-results {
+    padding: 80px 10px 20px;
+}
+
+/* books grid */
+
+.books-grid {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.books-grid li {
+    padding: 20px;
+    text-align: center;
+}
+
+.book {
+    width: 250px;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16), 0 5px 10px rgba(0, 0, 0, 0.23);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.triangle-check {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 55px solid rgb(44, 163, 228);
+    border-right: 55px solid transparent;
+    z-index: 20;
+}
+
+.book-check {
+    position: absolute;
+    top: -46px;
+    left: 7px;
+    z-index: 20;
+    width: 20px;
+    height: 20px;
+  }
+
+.book-title,
+.book-authors {
+    font-size: 0.8em;
+}
+
+.book-title {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.book-authors {
+    padding-bottom: 7px;
+}
+
+.book-top {
+    position: relative;
+    display: flex;
+    height: 290px;
+    align-items: flex-end;
+}
+
+/* book cover */
+
+.book-cover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: #eee;
+    width: 190px;
+    height: 270px;
+    margin: 10px 20px;
+}
+
+.book-cover-title {
+    padding: 20px 10px 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* book changer*/
+
+.button-changer-wrapper{
+    width: 250px;
+    height: 370px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+    top:-370px;
+    left: 0;
+    float: left;
+    z-index: 10;
+    text-align: center;
+    transition: opacity .5s;
+    margin-bottom: -370px;
+}
+
+.button-changer{
+    width: 170px;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 0;
+    background-color: white;
+    color: rgb(59, 72, 89);
+}
+
+.button-changer:hover{
+    width: 176px;
+    padding: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: rgb(44, 163, 228);
+    color: white;
+    transition: .2s;
+}
+
+.shelf-active{
+    border: 0;
+    background-color: rgb(59, 72, 89);
+    color: white;
+}
+
+.shelf-active:hover{
+    background-color: white;
+    color: rgb(44, 163, 228);
+    transition: .2s;
+}
+
+.book-shelf-changer {
+    position: relative;
+    bottom: 40px;
+    left: 210px;
+    margin-bottom: -50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(44, 163, 228);
+    background-image: url('../icons/3-dots-v.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    z-index: 20;
+}
+
+.book-shelf-changer-wrap {
+    height: 0;
+}
+
+.book-shelf-changer-wrap select {
+    display: none;
+}
+
+.search-error{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* book details */
+
+
+.book-details > .header {
+    width: 100%;
+    background: rgb(44, 163, 228);
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 20px;
+}
+
+.book-details .close {
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    display: block;
+    left: 5px;
+    top: 0px;
+    width: 40px;
+    height: 70px;
+    background-image: url('../icons/arrow-back-white.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
+
+.book-details .header-bottom {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book-details .book-cover{
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: #eee;
+    width: 190px;
+    height: 270px;
+    margin: 10px 20px;
+    margin-bottom: -120px;
+}
+
+.book-details .book-info{
+    font-size: 16px;
+    margin-top: 50px;
+    text-transform: none;
+}
+
+.book-details .book-rating {
+    position: relative;
+    bottom: -100px;
+    color: black;
+    font-size: 20px;
+}
+
+.book-details > .content {
+    width: 100%;
+    padding: 40px;
+    padding-top: 0;
+    margin-top: 120px;
+    text-align: justify;
+}
