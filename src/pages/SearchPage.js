@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as api from '../api/BooksAPI';
 import PropTypes from 'prop-types';
 import Book from '../components/Book';
+import Header from '../components/Header';
 // import { availableTags } from '../utils/Tags';
 
 export default class SearchPage extends Component {
@@ -10,7 +11,7 @@ export default class SearchPage extends Component {
         changeShelf: PropTypes.func.isRequired
     }
 
-    state ={
+    state = {
         query: '',
         tempBooks: [],
         error: false
@@ -58,6 +59,7 @@ export default class SearchPage extends Component {
 
         return (
             <div className="search-books">
+                <Header/>
                 <div className="search-books-bar">
                     <Link className="close-search" to='/'>Close</Link>
                     <div className="search-books-input-wrapper">
