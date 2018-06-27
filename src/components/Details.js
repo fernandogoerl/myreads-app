@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Ratings from 'react-ratings-declarative';
 
 export default class Details extends Component {
     static propTypes = {
@@ -14,8 +15,18 @@ export default class Details extends Component {
             <div className="book-details">
                 <div className="header">
                     <div className="header-top">
-                        <a className="close" onClick={close}>&nbsp;</a>
-                        { book.title }
+                        <a className="close" onClick={close}>&times;</a>
+                        {
+                            (book.title)
+                            ? (
+                                (book.title.length > 18)
+                                ? (
+                                    `${book.title.substr(0,30)}...`
+                                )
+                                : book.title
+                            )
+                            : ''
+                        }
                     </div>
                     <div className="header-bottom">
                         <img
@@ -32,16 +43,40 @@ export default class Details extends Component {
                             alt={'Cover not available'}
                         />
                         <div className="book-info">
-                            {book.authors} <br/>
+                            {
+                                (book.authors)
+                                ? (
+                                    (book.authors.length > 1)
+                                    ? `${book.authors[0]}, ${book.authors[1].substr(0,3)}...`.substr(0,30)
+                                    : book.authors
+                                )
+                                : ''
+                            } <br/>
                             {book.publishedDate.toString().substr(0,4)} | {book.pageCount} pages
                             <div className="book-rating">
-                                {book.averageRating}
+                                <Ratings
+                                    rating={book.averageRating}
+                                    widgetDimensions="30px"
+                                    widgetSpacings="0px"
+                                    widgetRatedColors="#FFC600"
+                                >
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                    <Ratings.Widget />
+                                </Ratings>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="content">
-                    {book.description}
+                    {
+                        (book.description)
+                        ? book.description
+                        : 'No description available'
+
+                    }
                 </div>
             </div>
         )

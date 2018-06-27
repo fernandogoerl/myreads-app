@@ -6,8 +6,8 @@ import Details from './Details';
 import check from '../icons/check.svg'
 
 const contentStyle = {
-    maxWidth: "600px",
-    width: "90%",
+    maxWidth: "500px",
+    width: "100%",
     border: 0,
     padding: 0
 };
