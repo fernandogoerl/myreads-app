@@ -1,6 +1,6 @@
 import React from 'react';
 import * as api from './api/BooksAPI';
-import './App.css';
+import './style/App.css';
 import SearchPage from './pages/SearchPage';
 import ShelvesPage from './pages/ShelvesPage';
 import { Route } from 'react-router-dom';
