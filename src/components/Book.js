@@ -63,7 +63,7 @@ export default class Book extends Component {
                             modal
                             contentStyle={contentStyle}
                         >
-                            {close => ( <Details book={book} changeShelf={changeShelf} close={close}/> )}
+                            {close => ( <Details book={book} close={close}/> )}
                         </Popup>
 
                     </div>

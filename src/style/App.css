@@ -287,8 +287,8 @@ body,
     font-size: 1.5rem;
 }
 
-/* book details */
 
+/* book details */
 
 .book-details > .header {
     width: 100%;
@@ -304,16 +304,10 @@ body,
     cursor: pointer;
     color: white;
     position: absolute;
-    /* display: block; */
     left: 10px;
-    /* top: 0px; */
     width: 40px;
     font-size: 50px;
     line-height: 30px;
-    /* background-image: url('../icons/letter-x.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 25px; */
 }
 
 .book-details .header-bottom {

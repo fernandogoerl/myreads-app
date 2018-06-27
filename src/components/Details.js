@@ -4,12 +4,11 @@ import Ratings from 'react-ratings-declarative';
 
 export default class Details extends Component {
     static propTypes = {
-        book: PropTypes.object.isRequired,
-        changeShelf: PropTypes.func.isRequired
+        book: PropTypes.object.isRequired
     }
 
     render() {
-        const { close, book, changeShelf } = this.props;
+        const { close, book } = this.props;
         console.log(book);
         return (
             <div className="book-details">
